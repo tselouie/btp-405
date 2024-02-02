@@ -42,29 +42,43 @@ Use module [matplotlib](https://matplotlib.org/) to plot a bar graph showing you
 
 5. (10 points) Consider the following code blocks which generate the same output.
     1. (7 points) Describe what each program snippet does to compute its results.
-    2. (3 points) What type of function is `doubleG(n)`? What is the advantage of using such a function?
+    Approach one is a function that takes a number parameter that denotes
+    what the for loop will iterate to. And for each number it iterates, it will be multiplied by 2 and appended to a list which is then returned by the function. Then the function is called in the for loop to print the values.
 
+    Approach 2 directly creates the list in the for loop iterator given the number 5
+    and prints out the numbers.
+
+    Approach 3 also takes a parameter much like approach 1 but instead of appending the calculated value into a list it returns/yields a sequence of numbers after multiplying it so it could be used as 'i' in the print iterator.
+
+    2. (3 points) What type of function is `doubleG(n)`? What is the advantage of using such a function?
+    doubleG(n) is a generator function, the advantage of using such a function is that it is more memory efficient as it does not need to allocate as much space to calculate the values as opposed to using a list which you need to use more memory right off the bat to assign it to values.
 
 
 ```
 #Approach 1
+// receives a number 'n' and creates a list of numbers up to n in multiples of 2 and returns the list
+//initializes the list
+//iterates through range and appends to res
 def doubleL(n):
     res = []
     for i in range(n): res.append(i * 2)
     return res
 
+//prints the index of the number in the format "i:n*2"
 for i in doubleL(5): 
     print(i, end=' : ')
 ```
 
 ```
 #Approach 2
+// provided the number 5 in range it iterates and creates the list
 for x in [n * 2 for n in range(5)]:
     print(x, end=' : ')
 ```
 
 ```
 #Approach 3
+//
 def doubleG(n):
         for i in range(n):
             yield i * 2
